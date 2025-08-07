@@ -39,6 +39,7 @@
       90%  { transform: translateY(0); }
       100% { transform: translateY(-100px); }
     }
+    
     .face-container {
       position: absolute;
       top: 20px;
@@ -117,15 +118,39 @@
 
 
   <script>
-    function bounceBall(ball) {
+   const ball = document.getElementById("ball");
+    const counterEl = document.getElementById("counter");
+    let touches = 0;
+    let alreadyCounted = false;
+
+    function bounceBall() {
       ball.classList.remove("bounce");
       void ball.offsetWidth;
       ball.classList.add("bounce");
+     
+      setTimeout(() => {
+        if (!alreadyCounted) {
+          touches++;
+          counterEl.textContent = "Touches: " + touches;
+          alreadyCounted = true;
+        }
+      }, 1200); 
+      setTimeout(() => {
+        alreadyCounted = false;
+      }, 2200);
     }
     function toggleInfo() {
       const info = document.getElementById("infoBox");
       info.classList.toggle("show");
     }
+    function toggleInfo() {
+  const info = document.getElementById("infoBox");
+  const label = document.getElementById("clickLabel");
+
+  info.classList.toggle("show");
+  label.style.display = info.classList.contains("show") ? "none" : "inline-block";
+}
+
   </script>
 </body>
 </html>
